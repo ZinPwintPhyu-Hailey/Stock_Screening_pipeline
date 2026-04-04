@@ -1,0 +1,66 @@
+{
+  "filters": {
+    "min_price": 5,
+    "max_earnings_days": 21,
+    "min_open_interest": 500,
+    "max_bid_ask_spread_pct": 12.0,
+    "min_iv_rank": 25,
+    "min_dte": 14,
+    "max_dte": 60,
+    "target_universe_size": null,
+    "exchanges": ["nyse", "nasdaq", "amex"]
+  },
+  "scoring": {
+    "weights": {
+      "premium_to_strike": 0.30,
+      "annualized_roi": 0.25,
+      "iv_rank": 0.15,
+      "open_interest": 0.10,
+      "spread_efficiency": 0.10,
+      "earnings_buffer": 0.10
+    }
+  },
+  "otm_rules": {
+    "base_otm_by_iv_rank": [
+      {"min": 0, "max": 20, "value": 0.05},
+      {"min": 20, "max": 40, "value": 0.07},
+      {"min": 40, "max": 60, "value": 0.09},
+      {"min": 60, "max": 80, "value": 0.11},
+      {"min": 80, "max": 100, "value": 0.13}
+    ],
+    "beta_adjustments": [
+      {"min": 0.0, "max": 0.80, "otm_add": -0.01, "dte_add": 7},
+      {"min": 0.80, "max": 1.20, "otm_add": 0.00, "dte_add": 0},
+      {"min": 1.20, "max": 1.80, "otm_add": 0.02, "dte_add": -7},
+      {"min": 1.80, "max": 99.0, "otm_add": 0.04, "dte_add": -14}
+    ]
+  },
+  "dte_rules": {
+    "base_dte_by_iv_rank": [
+      {"min": 0, "max": 20, "value": 45},
+      {"min": 20, "max": 40, "value": 38},
+      {"min": 40, "max": 60, "value": 31},
+      {"min": 60, "max": 80, "value": 24},
+      {"min": 80, "max": 100, "value": 17}
+    ]
+  },
+  "decision_thresholds": {
+    "strong_consider": 75,
+    "consider": 60
+  },
+  "data": {
+    "iv_rank_mode": "proxy",
+    "risk_free_rate": 0.0,
+    "request_pause_seconds": 0.15,
+    "max_workers": 8
+  },
+  "email": {
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "use_tls": true,
+    "sender": "haileyphyu01@gmail.com",
+    "password_env_var": "CSP_EMAIL_PASSWORD",
+    "to": ["wuyumyum12@gmail.com"],
+    "subject_prefix": "CSP Screener"
+  }
+}

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Env files
+.env
+.env.*
+!.env.example
+
+# Output files
+output/
+*.csv
+*.xlsx
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
