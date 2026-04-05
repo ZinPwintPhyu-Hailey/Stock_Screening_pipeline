@@ -1,0 +1,32 @@
+name: CSP Scheduler
+
+on:
+  schedule:
+    - cron: "30 23 * * 5" # Saturday 7:30 AM Singapore (Friday 11:30 PM UTC)
+    - cron: "0 0 * * 1" # Monday 8:00 AM Singapore (Sunday 12:00 AM UTC)
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Friday capture
+        run: |
+          python src/run_csp_screen.py --config config/settings.json --out-dir output
+
+      - name: Send Monday email
+        run: |
+          python src/send_latest_snapshot_email.py --config config/settings.json --out-dir output
