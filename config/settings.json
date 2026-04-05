@@ -60,7 +60,10 @@
     "use_tls": true,
     "sender": "haileyphyu01@gmail.com",
     "password_env_var": "CSP_EMAIL_PASSWORD",
-    "to": ["wuyumyum12@gmail.com"],
+  "to": [
+    "wuyumyum12@gmail.com",
+    "zinpwintphyu1995@gmail.com"
+  ],
     "subject_prefix": "CSP Screener"
   }
 }
