@@ -12,6 +12,7 @@ venv/
 !.env.example
 
 # Output files
+logs/
 output/
 *.csv
 *.xlsx
